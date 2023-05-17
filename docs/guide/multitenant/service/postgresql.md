@@ -4,7 +4,7 @@ titleSuffix: Azure Architecture Center
 description: This article describes the features of Azure Database for PostgreSQL that are useful when working with multitenanted systems, and it provides links to guidance and examples.
 author: PlagueHO
 ms.author: dascottr
-ms.date: 02/04/2022
+ms.date: 05/18/2022
 ms.topic: conceptual
 ms.service: architecture-center
 ms.subservice: azure-guide
@@ -51,11 +51,14 @@ More information:
 
 The [Sharding pattern](/azure/architecture/patterns/sharding) enables you to scale your workload across multiple databases or database servers.
 
-Solutions that need a very high level of scale can use Azure Database for PostgreSQL Hyperscale (Citus). This deployment mode enables horizontal sharding of tenants across multiple servers (nodes). By using _distributed tables_ in multitenant databases, you can ensure all data for a tenant is stored on the same node, which increases query performance.
+Solutions that need a very high level of scale can use Azure Cosmos DB for PostgreSQL. This deployment mode enables horizontal sharding of tenants across multiple servers (nodes). By using _distributed tables_ in multitenant databases, you can ensure all data for a tenant is stored on the same node, which increases query performance.
+
+> [!NOTE]
+> As of October 2022, Azure Database for PostgreSQL Hyperscale (Citus) was rebranded as Azure Cosmos DB for PostgreSQL and [moved into the Cosmos DB family of products](/azure/postgresql/hyperscale/moved).
 
 More information:
 
-- [Designing a multitenant database in Hyperscale (Citus)](/azure/postgresql/tutorial-design-database-hyperscale-multi-tenant)
+- [Design a multi-tenant database using Azure Cosmos DB for PostgreSQL](/azure/cosmos-db/postgresql/tutorial-design-database-multi-tenant)
 - [Distributed tables](/azure/postgresql/hyperscale/concepts-nodes#type-1-distributed-tables)
 - Choosing a [distribution column](/azure/postgresql/hyperscale/concepts-choose-distribution-column) in a distributed table.
 - A guide to using [Citus for multitenant applications](https://docs.citusdata.com/en/v10.2/use_cases/multi_tenant.html).
@@ -64,7 +67,7 @@ More information:
 
 Postgres uses a process-based model for connections. This model makes it inefficient to maintain large numbers of idle connections. Some multitenant architectures require a large number of active connections, which will negatively impact the performance of the Postgres server.
 
-Connection pooling via PgBouncer is installed by default in Azure Database for PostgreSQL [Flexible Server](/azure/postgresql/flexible-server) and [Hyperscale (Citus)](/azure/postgresql/hyperscale). Connection pooling via PgBouncer is not built-in to [Single Server](/azure/postgresql/single-server), but it can be installed on a separate server.
+Connection pooling via PgBouncer is installed by default in Azure Database for PostgreSQL [Flexible Server](/azure/postgresql/flexible-server). Connection pooling via PgBouncer is not built-in to [Single Server](/azure/postgresql/single-server), but it can be installed on a separate server.
 
 More information:
 
